@@ -1,0 +1,53 @@
+---
+- name: Ensure user "wso2" exists
+  user:
+    name: wso2
+    state: present
+  ignore_errors: no
+
+- name: Check if wso2ei file is already configured.
+  stat: path={{wso2ei_file_path}}
+  #connection: local
+  register: wso2ei_file_result
+
+- name: "copy the wso2ei package to machine"
+  copy: "src={{ item.src }} dest={{ item.dest }}"
+  with_items:
+    - src: "{{wso2ei_path}}"
+      dest: "{{wso2ei_file_path}}"
+  when: not wso2ei_file_result.stat.exists
+
+- name: "install unzip"
+  apt: 
+    name: unzip
+    state: installed
+  
+- name: check /opt/app not exist,create directory"
+  stat: path={{application_home}}
+  ignore_errors: True
+  register: application_home_result  
+
+- shell: mkdir {{application_home}}
+  when: not application_home_result.stat.exists
+
+- name: "unpack the wso2ei package to /opt/app"
+  unarchive:
+    copy: no
+    src: "{{ wso2ei_file_path }}"
+    dest: "{{application_home}}"
+
+- name: "chang wso2 home owner"
+  command: >
+    chown -R wso2:wso2 {{application_home}}/{{wso2ei_home}}
+
+- name: copy the wso2ei server.sh to machine
+  copy:
+    src: "{{wso2ei_service_script_path}}"
+    dest: /etc/init.d/
+    mode: 0755
+
+- name: "Start wso2 ei"
+  service:
+    name: wso2ei
+    state: started
+    enabled: yes

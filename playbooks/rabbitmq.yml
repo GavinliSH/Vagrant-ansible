@@ -1,0 +1,9 @@
+---
+- hosts: rabbitmq
+  sudo: yes
+  roles:
+    - erlang
+    - rabbitmq
+  vars:
+    - rabbitmq_version: "3.6.10"
+    - erlang_version: "19.3"

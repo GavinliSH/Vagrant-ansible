@@ -1,0 +1,6 @@
+---
+wso2ei_file_path: "/tmp/wso2ei-6.2.0.zip"
+wso2ei_path: "../files/wso2ei-6.2.0.zip"
+application_home: "/opt/app"
+wso2ei_service_script_path: "../files/wso2ei"
+wso2ei_home: "wso2ei-6.2.0"

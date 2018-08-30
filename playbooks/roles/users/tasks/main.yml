@@ -1,0 +1,8 @@
+- name: Add the user '{{app_user}}' with a specific uid and a primary group of '{{groups_app}}'
+  user:
+    name: "{{users_app}}"
+    shell: "{{users_shell}}"
+    comment: "{{users_comment}}"
+    uid: "{{users_uid}}"
+    group: "{{groups_app}}"
+    expires: -1

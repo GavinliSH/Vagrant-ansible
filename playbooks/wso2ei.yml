@@ -1,0 +1,6 @@
+---
+- hosts: wso2ei
+  sudo: yes
+  roles:
+    - java
+    - wso2ei
