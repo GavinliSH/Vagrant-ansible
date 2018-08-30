@@ -1,0 +1,3 @@
+# Vagrant-ansible
+
+# rabbitmq package
