@@ -1,7 +1,5 @@
 CONFIGURATIONS = YAML.load_file('nodes.yaml')
 
-JDKPLAYBOOK = "playbooks/java/jdk1.8-ubuntu.yml"
-
 Vagrant.configure("2") do |config|
   # changing default timeout from 300 to 1000 seconds
   config.vm.boot_timeout = 1000
@@ -33,7 +31,7 @@ Vagrant.configure("2") do |config|
       end
       # run ansible   
       config.vm.provision "ansible" do |ansible|
-        #ansible.inventory_path = "inventories/hosts"
+        ansible.inventory_path = "inventories/hosts"
         #ansible.limit = box['output_box_name']
         ansible.host_key_checking = false
         ansible.playbook = box['ansible_playbook']

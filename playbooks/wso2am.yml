@@ -1,0 +1,6 @@
+---
+- hosts: wso2am
+  sudo: yes
+  roles:
+    - java
+    #- wso2am
