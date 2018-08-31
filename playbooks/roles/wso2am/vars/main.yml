@@ -1,0 +1,7 @@
+---
+wso2am_file_path: "/tmp/wso2am-{{wso2am_version}}.zip"
+wso2am_version: "2.1.0"
+wso2am_path: "../files/wso2am-{{wso2am_version}}.zip"
+application_home: "/opt/app"
+wso2am_service_script_path: "../files/wso2am"
+wso2am_home: "wso2am-{{wso2am_version}}"
